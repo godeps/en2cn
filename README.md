@@ -177,3 +177,39 @@ FindBestHomophone(...) → 遍历 candidateDB，计算相似度，返回 "特斯
 Response ("特斯拉")
 
 这个方案最大限度地利用了 Go 的高性能 I/O 和并发能力来处理海量数据（词库）的匹配，同时将复杂的语言学处理（G2P）外置为预计算数据，是兼顾性能和实现可行性的最佳路径。
+
+## 项目实现
+
+`github.com/godeps/en2cn` 模块中提供了一个完全可运行的参考实现，它把上面的三个阶段串联在一起：
+
+- `data/*.json`：示例的预计算数据，分别包含英文-IPA、IPA Tokenizer 映射、中文候选词库以及声韵母相似度表。
+- `NewEngine()`：启动时加载全部数据，并返回一个 `Engine` 实例。
+- `Engine.TokenizeIPA()`：基于贪婪匹配的 IPA 解析器。
+- `Engine.CalculateSimilarity()`：按声/韵母相似度加权的 Levenshtein 算法。
+- `Engine.Convert(word string)`：对外暴露的单词查询接口，返回 TTS 友好的中文候选。
+
+这些组件全部使用 Go 1.21+ 的标准库和 `embed`，便于在无外部依赖的环境中演示整体流程。
+
+## 运行示例
+
+项目内置了 `examples/basic`，启动后会将多个英文品牌/公司名称转换为中文谐音词：
+
+```bash
+go run ./examples/basic
+```
+
+输出示例（节选）：
+
+```
+hello -> 哈喽
+coffee -> 咖啡
+tiger -> 太格
+banana -> 巴娜娜
+tesla -> 特斯拉
+apple -> 苹果
+google -> 谷歌
+microsoft -> 迈克软
+openai -> 欧朋爱
+```
+
+你可以把 `data` 目录下的 JSON 文件换成真实的 10w+ 数据集，即可把示例扩展到生产级别的服务。

@@ -1,0 +1,43 @@
+{
+  "特斯拉": [
+    {"shengmu": "t", "yunmu": "e"},
+    {"shengmu": "s", "yunmu": "i"},
+    {"shengmu": "l", "yunmu": "a"}
+  ],
+  "苹果": [
+    {"shengmu": "", "yunmu": "a"},
+    {"shengmu": "p", "yunmu": "ing"},
+    {"shengmu": "g", "yunmu": "uo"}
+  ],
+  "谷歌": [
+    {"shengmu": "g", "yunmu": "u"},
+    {"shengmu": "g", "yunmu": "e"}
+  ],
+  "迈克软": [
+    {"shengmu": "m", "yunmu": "ai"},
+    {"shengmu": "k", "yunmu": "e"},
+    {"shengmu": "r", "yunmu": "uan"}
+  ],
+  "欧朋爱": [
+    {"shengmu": "", "yunmu": "o"},
+    {"shengmu": "p", "yunmu": "eng"},
+    {"shengmu": "", "yunmu": "ai"}
+  ],
+  "哈喽": [
+    {"shengmu": "h", "yunmu": "a"},
+    {"shengmu": "l", "yunmu": "o"}
+  ],
+  "咖啡": [
+    {"shengmu": "k", "yunmu": "a"},
+    {"shengmu": "f", "yunmu": "ei"}
+  ],
+  "太格": [
+    {"shengmu": "t", "yunmu": "ai"},
+    {"shengmu": "g", "yunmu": "er"}
+  ],
+  "巴娜娜": [
+    {"shengmu": "b", "yunmu": "a"},
+    {"shengmu": "n", "yunmu": "a"},
+    {"shengmu": "n", "yunmu": "a"}
+  ]
+}
