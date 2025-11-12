@@ -13,4 +13,5 @@ type Engine struct {
 	candidateDB   map[string][]PinyinPart
 	shengmuScores map[string]map[string]float64
 	yunmuScores   map[string]map[string]float64
+	overrides     map[string]string
 }

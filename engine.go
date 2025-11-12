@@ -12,6 +12,9 @@ func (e *Engine) Convert(word string) (string, error) {
 	}
 
 	lowered := strings.ToLower(strings.TrimSpace(word))
+	if override, ok := e.overrides[lowered]; ok && override != "" {
+		return override, nil
+	}
 	ipa, ok := e.engIPADB[lowered]
 	if !ok {
 		return "", fmt.Errorf("%w: %s", ErrIPAUnavailable, word)

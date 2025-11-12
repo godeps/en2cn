@@ -17,6 +17,8 @@ var (
 	shengmuSimFile embed.FS
 	//go:embed data/yunmu_similarity.json
 	yunmuSimFile embed.FS
+	//go:embed data/manual_overrides.json
+	overrideFile embed.FS
 )
 
 // NewEngine loads all embedded data files and prepares an Engine instance.
@@ -36,6 +38,9 @@ func NewEngine() (*Engine, error) {
 	}
 	if err := loadJSON(yunmuSimFile, "data/yunmu_similarity.json", &e.yunmuScores); err != nil {
 		return nil, fmt.Errorf("load yunmu score: %w", err)
+	}
+	if err := loadJSON(overrideFile, "data/manual_overrides.json", &e.overrides); err != nil {
+		return nil, fmt.Errorf("load overrides: %w", err)
 	}
 	return e, nil
 }

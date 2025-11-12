@@ -8,21 +8,25 @@ func TestConvertExamples(t *testing.T) {
 		t.Fatalf("init engine: %v", err)
 	}
 
-	tests := map[string]string{
-		"hello":  "哈喽",
-		"coffee": "咖啡",
-		"tiger":  "太格",
+	want := map[string]string{
+		"hello":     "哈喽",
+		"coffee":    "咖啡",
+		"tiger":     "太格",
+		"banana":    "巴娜娜",
+		"tesla":     "特斯拉",
+		"apple":     "苹果",
+		"google":    "谷歌",
+		"microsoft": "迈克软",
+		"openai":    "欧朋爱",
 	}
 
-	for word, want := range tests {
+	for word, expected := range want {
 		got, err := engine.Convert(word)
 		if err != nil {
 			t.Fatalf("convert %s: %v", word, err)
 		}
-		if got != want {
-			ipa := engine.engIPADB[word]
-			parts := engine.TokenizeIPA(ipa)
-			t.Fatalf("convert %s: want %s, got %s (ipa=%s parts=%+v)", word, want, got, ipa, parts)
+		if got != expected {
+			t.Fatalf("convert %s: expected %s got %s", word, expected, got)
 		}
 	}
 }
